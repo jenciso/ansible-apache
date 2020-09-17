@@ -1,0 +1,17 @@
+---
+- name: httpd | install
+  yum:
+    name: httpd
+    state: present
+
+- name: httpd | config index.html
+  template:
+    src: index.html
+    dest: /var/www/html/
+  tags:
+    - config
+
+- name: httpd | started
+  service:
+    name: httpd
+    state: started
